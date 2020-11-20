@@ -1,0 +1,15 @@
+<launch>
+	<arg name="record" default="disable"/>
+	<include file="$(find turtlebot-walker)/launch/turtlebot_world.launch"></include>
+
+	<!---node pkg="turtlebot_walker_algorithm" name="walker" type="walker" output="screen"/-->
+
+	<!--node
+		pkg="rosbag"
+		name="record"
+		type="record"
+		args="-a -O $(find turtlebot_walker_algorithm)/Results/turtlebot_walker_algorithm.bag -x /camera/(.*)"
+		if="$(eval record == 'enable')"
+	/-->
+
+</launch>
