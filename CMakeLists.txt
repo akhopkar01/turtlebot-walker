@@ -22,7 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- INCLUDE_DIRS include
+#  INCLUDE_DIRS include
  CATKIN_DEPENDS roscpp rospy sensor_msgs std_msgs geometry_msgs
 )
 
@@ -40,8 +40,8 @@ include
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/turtlebot-walker_node.cpp)
-
+add_executable(turtlebot-walker src/main.cpp src/Walker.cpp)
+target_link_libraries(turtlebot-walker ${catkin_LIBRARIES})
 #############
 ## Testing ##
 #############

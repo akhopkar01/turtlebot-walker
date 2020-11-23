@@ -39,7 +39,7 @@ namespace turtlebot {
          * @param: Constant pointer to reference from sensor_msgs
          * @return: None
          * */
-         void sensorCallback(const sensor_msgs::LaserScan::ConstPtr& sense);
+         void sensorCallback(const sensor_msgs::LaserScan::ConstPtr&);
 
          /**
           * @brief: Publisher to ROS
@@ -53,19 +53,21 @@ namespace turtlebot {
          * @param: angular velocity : float
          * @param: linear velocity : float
          * */
-         walker(float angularVel, float linearVel);
+         Walker(float, float);
          
          /**
          * @brief: Destructor for walker class
          * @param: None
          * */
-         ~walker();
+         ~Walker();
 
         private:
+         bool obstacleInRange;
          ros::NodeHandle nh_;
          ros::Publisher pub_;
          ros::Subscriber sub_;
          float angularVel;
          float linearVel;
-    }
-}
+         void reset(geometry_msgs::Twist&);
+    };
+    }  // namespace turtlebot
