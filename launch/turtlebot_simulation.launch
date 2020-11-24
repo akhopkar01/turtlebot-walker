@@ -10,7 +10,7 @@
 		pkg="rosbag"
 		name="record"
 		type="record"
-		args="-a -O $(find turtlebot_walker_algorithm)/Results/turtlebot_walker_algorithm.bag -x /camera/(.*)"
+		args="-a -O $(find turtlebot-walker)/Results/turtlebot_walker.bag -x /camera/(.*)"
 		if="$(eval record == 'enable')"
 	/>
 
