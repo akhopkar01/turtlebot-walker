@@ -53,7 +53,7 @@ namespace turtlebot {
          * @brief: Constructor for walker class
          * @param: ros node
          * */
-         Walker(ros::NodeHandle);
+         explicit Walker(ros::NodeHandle);
          
          /**
          * @brief: Destructor for walker class
@@ -62,7 +62,7 @@ namespace turtlebot {
          ~Walker();
 
         private:
-         bool obstacleInRange;
+         bool obstacleInRange_;
          ros::NodeHandle nh_;
          ros::Publisher pub_;
          ros::Subscriber sub_;

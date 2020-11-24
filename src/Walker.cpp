@@ -37,22 +37,23 @@ SOFTWARE.
  * @brief: Constructor implementation
  * */
 turtlebot::Walker::Walker(ros::NodeHandle n)
-    : angularVel_{0.6}, linearVel_{0.1}, nh_{n} {
+    : angularVel_{0.6}, linearVel_{0.2}, nh_{n}, obstacleInRange_{false} {
 }
 
 /**
  * @brief: Callback for LaserScan implementation
  * */
-void turtlebot::Walker::sensorCallback(const sensor_msgs::LaserScan::ConstPtr& sense) {
+void turtlebot::Walker::sensorCallback(const sensor_msgs::
+                                        LaserScan::ConstPtr& sense) {
   auto sensorRanges = sense->ranges;
   for (size_t i = 0; i <= _ANGLE_; ++i) {
     // If obstacle in range [-60, 60]
     if (sensorRanges[i] < 0.5 && sensorRanges[i + 299] < 0.5) {
-      obstacleInRange = true;
+      obstacleInRange_ = true;
       return;
     }
   }
-  obstacleInRange = false;
+  obstacleInRange_ = false;
   return;
 }
 
@@ -74,14 +75,15 @@ void turtlebot::Walker::reset(geometry_msgs::Twist& twist) {
 void turtlebot::Walker::pubROSNode() {
   // Initialize publisher subscriber node
   pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
-  sub_ = nh_.subscribe<sensor_msgs::LaserScan>("/scan", 1000, &turtlebot::Walker::sensorCallback, this);
+  sub_ = nh_.subscribe<sensor_msgs::LaserScan>("/scan", 1000,
+                          &turtlebot::Walker::sensorCallback, this);
   ros::Rate loopRate(2);
   while (ros::ok()) {
     geometry_msgs::Twist twist;
 
     // Reset twist to 0
     this->reset(twist);
-    if (obstacleInRange) {
+    if (obstacleInRange_) {
       ROS_INFO_STREAM("Obstacle detected.. (turning left)");
       twist.angular.z = angularVel_;
     } else {

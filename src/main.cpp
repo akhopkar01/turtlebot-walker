@@ -29,14 +29,14 @@ SOFTWARE.
 #include <ros/ros.h>
 #include <iostream>
 
-int main(int argc, char** argv) { 
+int main(int argc, char** argv) {
   // Initialize ROS node
   ros::init(argc, argv, "Walker");
   ros::NodeHandle node;
 
   // Create Node instance
   turtlebot::Walker turtleSim(node);
-  
+
   // Perform walker algorithm
   turtleSim.pubROSNode();
   return 0;
