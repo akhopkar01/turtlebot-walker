@@ -1,5 +1,5 @@
 # Turtlebot Walker Simulation Package
-[![ROS Melodic](https://img.shields.io/badge/ROS Melodic-here%20-blue.svg)](http://wiki.ros.org/melodic/Installation)
+[![ROS Melodic](https://img.shields.io/badge/ROSMelodic-here%20-blue.svg)](http://wiki.ros.org/melodic/Installation)
 ## About
 This is a ROS package which simulates turtlebot implementing a walker algorithm. The package is simulated in Gazebo. We subscribe to Laser Scans from the turtlebot and publish the messages to /cmd_vel topic. An obstacle detection and avoidance technique is set to avoid the obstacles and move in straight lines.
 
