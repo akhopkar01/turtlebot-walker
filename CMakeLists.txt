@@ -40,8 +40,8 @@ include
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(turtlebot-walker src/main.cpp src/Walker.cpp)
-target_link_libraries(turtlebot-walker ${catkin_LIBRARIES})
+add_executable(Walker src/main.cpp src/Walker.cpp)
+target_link_libraries(Walker ${catkin_LIBRARIES})
 #############
 ## Testing ##
 #############
