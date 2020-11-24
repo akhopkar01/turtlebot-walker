@@ -24,6 +24,7 @@ SOFTWARE.
  * @file: Walker class declaration 
  * @brief: This file contains the declaration of the walker class
  * */
+
 #pragma once
 
 #include <ros/ros.h>
@@ -50,10 +51,9 @@ namespace turtlebot {
 
          /**
          * @brief: Constructor for walker class
-         * @param: angular velocity : float
-         * @param: linear velocity : float
+         * @param: ros node
          * */
-         Walker(float, float);
+         Walker(ros::NodeHandle);
          
          /**
          * @brief: Destructor for walker class
@@ -66,8 +66,15 @@ namespace turtlebot {
          ros::NodeHandle nh_;
          ros::Publisher pub_;
          ros::Subscriber sub_;
-         float angularVel;
-         float linearVel;
+         float angularVel_;
+         float linearVel_;
+
+        protected:
+        /**
+         * @brief: resetting the twist message
+         * @param: reference to Twist message geometry_msgs
+         * @return: None
+         * */
          void reset(geometry_msgs::Twist&);
     };
     }  // namespace turtlebot
